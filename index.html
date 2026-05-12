@@ -5,92 +5,215 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hush · Daily Journal</title>
   <meta name="description" content="Hush is a reflective journaling app. One coach-written question, every day. No AI.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #FCFBF7;
+      --bg-alt: #F5F2EA;
       --text: #1F1A14;
       --muted: #6B6258;
-      --accent: #1D5751;
+      --teal: #1D5751;
+      --teal-dark: #144641;
       --amber: #C8A567;
       --border: #E5DFD3;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      line-height: 1.65;
-      font-size: 16px;
+      font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
     .wrap {
-      max-width: 560px;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 96px 24px 48px;
-      text-align: center;
+      padding: 80px 24px 48px;
       flex: 1;
+      width: 100%;
+    }
+    .mark {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--teal);
+      letter-spacing: 0.4px;
+      margin-bottom: 32px;
     }
     h1 {
-      font-family: Georgia, "Cormorant Garamond", serif;
-      font-size: 56px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(44px, 8vw, 64px);
       font-weight: 500;
-      letter-spacing: 0.3px;
-      margin: 0 0 12px;
-      color: var(--accent);
+      letter-spacing: 0.2px;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 16px;
     }
     .tagline {
-      font-size: 18px;
-      color: var(--text);
+      font-size: 19px;
+      color: var(--muted);
       margin-bottom: 8px;
+      font-style: italic;
+      font-family: "Cormorant Garamond", Georgia, serif;
     }
     .sub {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    .quiz-cta {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 32px;
+    }
+    .quiz-cta .label {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .quiz-cta h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .quiz-cta p {
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--teal);
+      color: var(--bg);
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 0.4px;
+      transition: background 0.2s ease;
+      box-shadow: 0 4px 20px rgba(20, 70, 65, 0.08);
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 600px) {
+      .pillars { grid-template-columns: 1fr 1fr; }
+    }
+    .pillar {
+      padding: 20px 22px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .pillar h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+    .pillar p {
       font-size: 15px;
       color: var(--muted);
-      margin-bottom: 64px;
+      line-height: 1.5;
     }
+
     .links {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
       gap: 16px;
-      align-items: center;
+      margin-top: 16px;
     }
     .links a {
-      color: var(--accent);
+      color: var(--teal);
       text-decoration: none;
-      font-size: 16px;
-      padding: 12px 24px;
+      font-size: 15px;
+      padding: 8px 16px;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      min-width: 200px;
+      border-radius: 999px;
+      transition: background 0.2s ease;
     }
-    .links a:hover {
-      background: var(--border);
-    }
+    .links a:hover { background: var(--bg-alt); }
+
     .footer {
       text-align: center;
-      padding: 24px;
+      padding: 32px 24px;
       font-size: 13px;
       color: var(--muted);
       border-top: 1px solid var(--border);
     }
+    .footer .dot { color: var(--amber); margin: 0 8px; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>Hush</h1>
-    <p class="tagline">Coach-written prompts. No AI.</p>
-    <p class="sub">A reflective journaling app — one question, every day.</p>
+    <div class="mark">hush.</div>
+
+    <h1>Coach-written prompts. No&nbsp;AI.</h1>
+    <p class="tagline">One question, every day.</p>
+    <p class="sub">A reflective journaling app launching on iOS in May 2026.</p>
+
+    <div class="quiz-cta">
+      <div class="label">2 dakikalık test</div>
+      <h2>Yazdığın günlük seni nasıl tanır?</h2>
+      <p>4 reflektif yazar tipinden hangisi sensin? Testi tamamla, ilk 100 kullanıcı indirim listesinde yerini al.</p>
+      <a class="btn-primary" href="./quiz.html">Teste başla →</a>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <h3>No AI</h3>
+        <p>315 soru elle yazıldı. Bir koç tarafından — bir algoritma değil.</p>
+      </div>
+      <div class="pillar">
+        <h3>Yerel kalır</h3>
+        <p>Yazıların cihazında durur. Buluta gitmez, biz okumayız.</p>
+      </div>
+      <div class="pillar">
+        <h3>3 gün ücretsiz</h3>
+        <p>Kart bilgisi sormaz. Sevdiysen kalırsın.</p>
+      </div>
+      <div class="pillar">
+        <h3>Bir soru, bir gün</h3>
+        <p>Daily ritüel — daha azı değil, daha fazlası da değil.</p>
+      </div>
+    </div>
 
     <div class="links">
       <a href="./privacy.html">Privacy Policy</a>
       <a href="./terms.html">Terms of Service</a>
     </div>
   </div>
+
   <div class="footer">
-    Hush · Daily Journal — by Sera Dilara Ceylan, Certified Co-Active® Coach.
+    Hush · Daily Journal
+    <span class="dot">·</span>
+    by Sera Dilara Ceylan, Certified Co-Active® Coach
   </div>
 </body>
 </html>
